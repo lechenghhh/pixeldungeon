@@ -24,22 +24,22 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 public class ScrollHolder extends Bag {
 
 	{
-		name = "scroll holder";
+		name = "卷轴架";
 		image = ItemSpriteSheet.HOLDER;
-		
+
 		size = 12;
 	}
-	
+
 	@Override
 	public boolean grab( Item item ) {
 		return item instanceof Scroll;
 	}
-	
+
 	@Override
 	public int price() {
 		return 50;
 	}
-	
+
 	@Override
 	public String info() {
 		return

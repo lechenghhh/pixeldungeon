@@ -32,31 +32,30 @@ import com.watabou.pixeldungeon.levels.Level;
 import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.pixeldungeon.utils.GLog;
 
-public class MageArmor extends ClassArmor {	
-	
-	private static final String AC_SPECIAL = "MOLTEN EARTH"; 
-	
-	private static final String TXT_NOT_MAGE	= "Only mages can use this armor!";
-	
+public class MageArmor extends ClassArmor {
+
+	private static final String AC_SPECIAL = "MOLTEN EARTH熔融土";
+
+	private static final String TXT_NOT_MAGE	= "只有法师才能使用此护甲!";
+
 	{
-		name = "mage robe";
+		name = "法袍";
 		image = ItemSpriteSheet.ARMOR_MAGE;
 	}
-	
+
 	@Override
 	public String special() {
 		return AC_SPECIAL;
 	}
-	
+
 	@Override
 	public String desc() {
 		return
-			"Wearing this gorgeous robe, a mage can cast a spell of molten earth: all the enemies " +
-			"in his field of view will be set on fire and unable to move at the same time.";
+			"法师穿着这件华丽的长袍，可以施展一个熔化的地球咒语：他视野中的所有敌人都会被点燃，无法同时移动。";
 	}
-	
+
 	@Override
-	public void doSpecial() {	
+	public void doSpecial() {
 
 		for (Mob mob : Dungeon.level.mobs) {
 			if (Level.fieldOfView[mob.pos]) {
@@ -64,17 +63,17 @@ public class MageArmor extends ClassArmor {
 				Buff.prolong( mob, Roots.class, 3 );
 			}
 		}
-		
+
 		curUser.HP -= (curUser.HP / 3);
-		
+
 		curUser.spend( Actor.TICK );
 		curUser.sprite.operate( curUser.pos );
 		curUser.busy();
-		
+
 		curUser.sprite.centerEmitter().start( ElmoParticle.FACTORY, 0.15f, 4 );
 		Sample.INSTANCE.play( Assets.SND_READ );
 	}
-	
+
 	@Override
 	public boolean doEquip( Hero hero ) {
 		if (hero.heroClass == HeroClass.MAGE) {

@@ -24,17 +24,17 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 public class WandHolster extends Bag {
 
 	{
-		name = "wand holster";
+		name = "魔杖皮套";
 		image = ItemSpriteSheet.HOLSTER;
-		
+
 		size = 12;
 	}
-	
+
 	@Override
 	public boolean grab( Item item ) {
 		return item instanceof Wand;
 	}
-	
+
 	@Override
 	public boolean collect( Bag container ) {
 		if (super.collect( container )) {
@@ -48,23 +48,22 @@ public class WandHolster extends Bag {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public void onDetach( ) {
 		for (Item item : items) {
 			((Wand)item).stopCharging();
 		}
 	}
-	
+
 	@Override
 	public int price() {
 		return 50;
 	}
-	
+
 	@Override
 	public String info() {
 		return
-			"This slim holder is made of leather of some exotic animal. " +
-			"It allows to compactly carry up to " + size + " wands.";
+			"这个纤细的支架是由一些异国动物的皮革制成的。它允许紧凑携带多达 " + size + " 魔杖";
 	}
 }

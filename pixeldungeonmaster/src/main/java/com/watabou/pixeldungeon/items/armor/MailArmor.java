@@ -23,17 +23,17 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 public class MailArmor extends Armor {
 
 	{
-		name = "mail armor";
+		name = "链甲";
 		image = ItemSpriteSheet.ARMOR_MAIL;
 	}
-	
+
 	public MailArmor() {
 		super( 3 );
 	}
 
 	@Override
 	public String desc() {
-		return 
-			"Interlocking metal links make for a tough but flexible suit of armor.";
+		return
+			"互锁的金属链环构成一套坚韧而灵活的盔甲。";
 	}
 }

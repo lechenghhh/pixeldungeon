@@ -43,7 +43,7 @@ import com.watabou.utils.Random;
 public class WandOfAvalanche extends Wand {
 
 	{
-		name = "Wand of Avalanche";
+		name = "雪崩魔杖";
 		hitChars = false;
 	}
 
@@ -103,7 +103,7 @@ public class WandOfAvalanche extends Wand {
 
 		if (!curUser.isAlive()) {
 			Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
-			GLog.n( "You killed yourself with your own Wand of Avalanche..." );
+			GLog.n( "你用自己的雪崩魔杖自杀了。。。" );
 		}
 	}
 
@@ -114,8 +114,6 @@ public class WandOfAvalanche extends Wand {
 
 	@Override
 	public String desc() {
-		return
-				"When a discharge of this wand hits a wall (or any other solid obstacle) it causes " +
-						"an avalanche of stones, damaging and stunning all creatures in the affected area.";
+		return "当这根魔杖的喷射物碰到墙壁（或任何其他固体障碍物）时，它会造成石头的雪崩，破坏并惊艳受影响区域内的所有生物。";
 	}
 }

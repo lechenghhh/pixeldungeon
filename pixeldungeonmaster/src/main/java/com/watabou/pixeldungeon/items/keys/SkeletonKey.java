@@ -20,16 +20,15 @@ package com.watabou.pixeldungeon.items.keys;
 import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 
 public class SkeletonKey extends Key {
-	
+
 	{
 		name = "skeleton key";
 		image = ItemSpriteSheet.SKELETON_KEY;
 	}
-	
+
 	@Override
 	public String info() {
-		return 
-			"This key looks serious: its head is shaped like a skull. " +
-			"Probably it can open some serious door.";
+		return
+			"这把钥匙看起来很严肃：它的头形状像头骨。也许它能打开一扇严肃的门。";
 	}
 }

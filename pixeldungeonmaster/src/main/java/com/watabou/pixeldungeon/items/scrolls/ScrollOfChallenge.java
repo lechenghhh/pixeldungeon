@@ -33,19 +33,19 @@ import com.watabou.pixeldungeon.utils.GLog;
 public class ScrollOfChallenge extends Scroll {
 
 	{
-		name = "Scroll of Challenge";
+		name = "挑战卷轴";
 	}
-	
+
 	@Override
 	protected void doRead() {
-		
+
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 			mob.beckon( curUser.pos );
 			if (Dungeon.visible[mob.pos]) {
 				Buff.affect( mob, Rage.class, Level.distance( curUser.pos, mob.pos ) );
 			}
 		}
-		
+
 		for (Heap heap : Dungeon.level.heaps.values()) {
 			if (heap.type == Heap.Type.MIMIC) {
 				Mimic m = Mimic.spawnAt( heap.pos, heap.items );
@@ -55,21 +55,20 @@ public class ScrollOfChallenge extends Scroll {
 				}
 			}
 		}
-		
-		GLog.w( "The scroll emits a challenging roar that echoes throughout the dungeon!" );
+
+		GLog.w( "卷轴发出一种挑战性的咆哮，回荡在整个地牢！" );
 		setKnown();
-		
-		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );		
+
+		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
 		Sample.INSTANCE.play( Assets.SND_CHALLENGE );
 		Invisibility.dispel();
-		
+
 		readAnimation();
 	}
-	
+
 	@Override
 	public String desc() {
-		return 
-			"When read aloud, this scroll will unleash a challenging roar " +
-			"that will awaken all monsters and alert them to the reader's location.";
+		return
+			"当大声朗读时，这卷卷轴会释放出一种具有挑战性的咆哮，唤醒所有怪物并提醒他们注意读者的位置。";
 	}
 }

@@ -22,17 +22,17 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 
 public class LeatherArmor extends Armor {
 
-	{	
-		name = "leather armor";
+	{
+		name = "皮甲";
 		image = ItemSpriteSheet.ARMOR_LEATHER;
 	}
-	
+
 	public LeatherArmor() {
 		super( 2 );
 	}
-	
+
 	@Override
 	public String desc() {
-		return "Armor made from tanned monster hide. Not as light as cloth armor but provides better protection.";
+		return "由晒黑的怪物皮制成的盔甲。不像布甲那么轻，但能提供更好的保护。";
 	}
 }

@@ -27,12 +27,12 @@ public class IronKey extends Key {
 	private static final String TXT_FROM_DEPTH = "iron key from depth %d";
 
 	public static int curDepthQuantity = 0;
-	
+
 	{
 		name = "iron key";
 		image = ItemSpriteSheet.IRON_KEY;
 	}
-	
+
 	@Override
 	public boolean collect( Bag bag ) {
 		boolean result = super.collect( bag );
@@ -41,23 +41,22 @@ public class IronKey extends Key {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public void onDetach( ) {
 		if (depth == Dungeon.depth) {
 			Dungeon.hero.belongings.countIronKeys();
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return Utils.format( TXT_FROM_DEPTH, depth );
 	}
-	
+
 	@Override
 	public String info() {
-		return 
-			"The notches on this ancient iron key are well worn; its leather lanyard " +
-			"is battered by age. What door might it open?";
+		return
+			"这把古老的铁钥匙上的槽口磨损得很厉害；它的皮革系索因年代久远而磨损。它能开什么门？";
 	}
 }

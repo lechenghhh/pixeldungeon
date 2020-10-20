@@ -36,27 +36,27 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.pixeldungeon.utils.GLog;
 
 public class RogueArmor extends ClassArmor {
-	
-	private static final String TXT_FOV 		= "You can only jump to an empty location in your field of view";
-	private static final String TXT_NOT_ROGUE	= "Only rogues can use this armor!";
-	
-	private static final String AC_SPECIAL = "SMOKE BOMB"; 
-	
+
+	private static final String TXT_FOV 		= "您只能跳转到视野中的空白位置";
+	private static final String TXT_NOT_ROGUE	= "Only 盗贼 can use this armor!";
+
+	private static final String AC_SPECIAL = "烟雾弹";
+
 	{
-		name = "rogue garb";
+		name = "盗贼装束";
 		image = ItemSpriteSheet.ARMOR_ROGUE;
 	}
-	
+
 	@Override
 	public String special() {
 		return AC_SPECIAL;
 	}
-	
+
 	@Override
-	public void doSpecial() {			
+	public void doSpecial() {
 		GameScene.selectCell( teleporter );
 	}
-	
+
 	@Override
 	public boolean doEquip( Hero hero ) {
 		if (hero.heroClass == HeroClass.ROGUE) {
@@ -66,30 +66,29 @@ public class RogueArmor extends ClassArmor {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public String desc() {
-		return 
-			"Wearing this dark garb, a rogue can perform a trick, that is called \"smoke bomb\" " +
-			"(though no real explosives are used): he blinds enemies who could see him and jumps aside.";
+		return
+			"一个流氓穿着这种黑色的衣服，可以表演一种叫做“烟雾弹”的把戏（尽管没有使用真正的爆炸物）：他会使看到他的敌人失明，然后跳到一边。";
 	}
-	
+
 	protected static CellSelector.Listener teleporter = new  CellSelector.Listener() {
-		
+
 		@Override
 		public void onSelect( Integer target ) {
 			if (target != null) {
 
-				if (!Level.fieldOfView[target] || 
-					!(Level.passable[target] || Level.avoid[target]) || 
+				if (!Level.fieldOfView[target] ||
+					!(Level.passable[target] || Level.avoid[target]) ||
 					Actor.findChar( target ) != null) {
-					
+
 					GLog.w( TXT_FOV );
 					return;
 				}
-				
+
 				curUser.HP -= (curUser.HP / 3);
-				
+
 				for (Mob mob : Dungeon.level.mobs) {
 					if (Level.fieldOfView[mob.pos]) {
 						Buff.prolong( mob, Blindness.class, 2 );
@@ -97,20 +96,20 @@ public class RogueArmor extends ClassArmor {
 						mob.sprite.emitter().burst( Speck.factory( Speck.LIGHT ), 4 );
 					}
 				}
-				
+
 				WandOfBlink.appear( curUser, target );
 				CellEmitter.get( target ).burst( Speck.factory( Speck.WOOL ), 10 );
 				Sample.INSTANCE.play( Assets.SND_PUFF );
 				Dungeon.level.press( target, curUser );
 				Dungeon.observe();
-				
+
 				curUser.spendAndNext( Actor.TICK );
 			}
 		}
-		
+
 		@Override
 		public String prompt() {
-			return "Choose a location to jump to";
+			return "选择要跳转到的位置";
 		}
 	};
 }

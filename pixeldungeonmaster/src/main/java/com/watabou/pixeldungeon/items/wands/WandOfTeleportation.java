@@ -30,21 +30,21 @@ import com.watabou.utils.Callback;
 public class WandOfTeleportation extends Wand {
 
 	{
-		name = "Wand of Teleportation";
+		name = "传送魔杖";
 	}
 
 	@Override
 	protected void onZap( int cell ) {
-		
+
 		Char ch = Actor.findChar( cell );
-		
+
 		if (ch == curUser) {
-			
+
 			setKnown();
 			ScrollOfTeleportation.teleportHero( curUser );
-			
+
 		} else if (ch != null) {
-			
+
 			int count = 10;
 			int pos;
 			do {
@@ -53,36 +53,35 @@ public class WandOfTeleportation extends Wand {
 					break;
 				}
 			} while (pos == -1);
-			
+
 			if (pos == -1) {
-				
+
 				GLog.w( ScrollOfTeleportation.TXT_NO_TELEPORT );
-				
+
 			} else {
-			
+
 				ch.pos = pos;
 				ch.sprite.place( ch.pos );
 				ch.sprite.visible = Dungeon.visible[pos];
-				GLog.i( curUser.name + " teleported " + ch.name + " to somewhere" );
-				
+				GLog.i( curUser.name + " teleported(被传送) " + ch.name + " to somewhere" );
+
 			}
 
 		} else {
-			
-			GLog.i( "nothing happened" );
-			
+
+			GLog.i( "什么也没发生" );
+
 		}
 	}
-	
+
 	protected void fx( int cell, Callback callback ) {
 		MagicMissile.coldLight( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
+
 	@Override
 	public String desc() {
 		return
-			"A blast from this wand will teleport a creature against " +
-			"its will to a random place on the current level.";
+			"从这个魔杖发出的一个冲击波会将一个违背其意愿的生物传送到当前关卡上的一个随机位置。";
 	}
 }

@@ -21,31 +21,30 @@ import com.watabou.pixeldungeon.items.Item;
 import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 
 public class CorpseDust extends Item {
-	
+
 	{
 		name = "corpse dust";
 		image = ItemSpriteSheet.DUST;
-		
+
 		cursed = true;
 		cursedKnown = true;
-		
+
 		unique = true;
 	}
-	
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return true;
 	}
-	
+
 	@Override
 	public String info() {
 		return
-			"The ball of corpse dust doesn't differ outwardly from a regular dust ball. However, " +
-			"you know somehow that it's better to get rid of it as soon as possible.";
+			"尸尘球的外观和普通的尘球没有区别。不过，你也知道，最好是尽快摆脱它。";
 	}
 }

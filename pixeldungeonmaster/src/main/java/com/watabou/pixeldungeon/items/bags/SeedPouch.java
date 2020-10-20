@@ -24,25 +24,25 @@ import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
 public class SeedPouch extends Bag {
 
 	{
-		name = "seed pouch";
+		name = "种子袋";
 		image = ItemSpriteSheet.POUCH;
-		
+
 		size = 8;
 	}
-	
+
 	@Override
 	public boolean grab( Item item ) {
 		return item instanceof Plant.Seed;
 	}
-	
+
 	@Override
 	public int price() {
 		return 50;
 	}
-	
+
 	@Override
 	public String info() {
 		return
-			"This small velvet pouch allows you to store any number of seeds in it. Very convenient.";
+			"这个小天鹅绒袋允许你储存任何数量的种子。很方便。";
 	}
 }
